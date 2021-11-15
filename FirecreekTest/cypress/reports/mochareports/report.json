@@ -1,0 +1,126 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-11-15T12:11:54.074Z",
+    "end": "2021-11-15T12:14:38.690Z",
+    "duration": 123347,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "20b9ec65-ecb9-43f9-9d07-e495767bd23b",
+      "title": "",
+      "fullFile": "cypress/integration/TestCases/firecreek_test.spec.js",
+      "file": "cypress/integration/TestCases/firecreek_test.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "beb42400-a687-4c72-b080-267f4729c530",
+          "title": "Firecreek Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Test Scenario 2 - Add a property with a multiple rentable units",
+              "fullTitle": "Firecreek Test Test Scenario 2 - Add a property with a multiple rentable units",
+              "timedOut": null,
+              "duration": 62885,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//User logged into AUT already\ncy.url().should('include', 'dashboard'); //Click on Properties dropdown on the left-hand panel\ndashBoard.getCollapseNavigation().click();\ndashBoard.getPropertiesOption().click();\ncy.url().should('include', 'properties'); //Click on the Add property button on the property index page\nproperties.getAddPropertyButton().click();\ncy.wait(3000); //Select Property with a multiple rentable units option\naddProp.getMultipleRentable().click(); //Enter data in all required fields\naddProp.getPropertyName().type('Test Name');\naddProp.getPropertyOwner().click();\naddProp.getPropertyOwnerSelection().click();\naddProp.getAddress1().type('Test Address');\naddProp.getAddress2().type('Address part 2');\naddProp.getPostcode().type(123456);\naddProp.getCity().type('London');\naddProp.getCounty().type('London'); //Make sure that the “I manage this Property” checkbox is ticked\naddProp.getManageThisPropertyCheckbox().check().should('be.checked'); //Select number of rentable units more than 1\naddProp.getNumOfRentableUnits().focus().clear().type(2);\ncy.wait(2000); //Click on \"Next,Unit Settings\" button\naddProp.getNextUnitSettingsButton().click({\n  force: true\n});\ncy.wait(2000); //Select all fields under Unit Settings section\nunitSetting.getUnitSettingsUnitType().should('be.visible').select('Flat');\nunitSetting.getUnitSettingsManager().click();\nunitSetting.getManagerSelection().click();\nunitSetting.getUnitSettingsLettingAgent().click();\nunitSetting.getLettingAgentSelection().click();\nunitSetting.getCertificateTypes().type('Deposit');\nunitSetting.getCertificateTypesSelection().contains('Deposit').click();\nunitSetting.getUnitOneUnitType().select('Bed');\nunitSetting.getUnitOneUnitOwner().should('be.visible').select('Owner 1 - Sansiri');\nunitSetting.getUnitOnePropertyManager().select('Cypress Tester 1');\nunitSetting.getUnitOneLettingAgent().select('Real Agency');\nunitSetting.getUnitTwoUnitType().select('Commercial');\nunitSetting.getUnitTwoUnitOwner().select('Owner 1 - Sansiri');\nunitSetting.getUnitTwoPropertyManager().select('Cypress Tester 1');\nunitSetting.getUnitTwoLettingAgent().select('Real Agency');\ncy.wait(2000); //Click on Add Property button\nunitSetting.getAddPropertyButton().click({\n  force: true\n}); //Verify property with multiple units is successfully added\ncy.get('.well > :nth-child(1)').should('include.text', 'Test Name'); //Re-click on Properties dropdown from the left-hand panel\ndashBoard.getCollapseNavigation().click();\ndashBoard.getPropertiesOption().click();\ncy.wait(2000); //Validate that the property created is visible on properties index page\ncomElement.getSearchTextbox().type('Test Name');\ncomElement.getSearchButton().click();\ncy.wait(2000);\nproperties.getPropertyPresentOnIndexPage().should('include.text', 'Test Name');",
+              "err": {},
+              "uuid": "4948b2af-5898-4361-8c08-7eba2ca030c0",
+              "parentUUID": "beb42400-a687-4c72-b080-267f4729c530",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Test Scenario 3 - Add a task related to above property",
+              "fullTitle": "Firecreek Test Test Scenario 3 - Add a task related to above property",
+              "timedOut": null,
+              "duration": 60462,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//User logged into AUT already\ncy.url().should('include', 'dashboard'); //Property already added as per scenario 2\ndashBoard.getCollapseNavigation().click();\ndashBoard.getPropertiesOption().click();\ncomElement.getSearchTextbox().type('Test Name');\ncomElement.getSearchButton().click();\ncy.wait(2000);\nproperties.getPropertyPresentOnIndexPage().should('include.text', 'Test Name'); //Click on Tasks dropdown on the left-hand panel to view the task index page\ndashBoard.getCollapseNavigation().click();\ndashBoard.getTasksOption().click();\ncy.wait(3000); //Click on Add Task Button\ntasks.getAddTaskButton().click();\ncy.wait(3000); //Relate this task to the property created from scenario 2\naddTask.getRelateToProperty().should('be.visible').click();\naddTask.getInputToRelateToProperty().type('Test Name');\ncy.wait(3000);\naddTask.getSelectProperty().contains('Test Name').click(); //cypress-wait-until plugin\ncy.waitUntil(() => true); //Enter data in all the required fields \naddTask.getTaskDescription().type('Task description-test');\naddTask.getTaskDueDate().type('20/11/2021');\naddTask.getTaskTimeDue().type('15:00');\naddTask.getAssignTo().click();\naddTask.getAssignToSelection().click();\naddTask.getTaskType().should('be.visible').select('Maintenance'); //cypress-file-upload plugin\ncy.get('.area').attachFile('sample.png', {\n  subjectType: \"drag-n-drop\"\n});\ncy.get('.img-thumbnail > img').should('be.visible');\ncy.wait(2000); //Click on Save Task Button\naddTask.getSaveTaskButton().click();\ncy.wait(4000); //Redirected to the task view page of the newly created task\ncy.url().should('include', 'tasks/view'); //Validate that a task record related to property(from Scenario 2) has been successfully created\ncy.get('.data-item-relationship > :nth-child(1)').contains('Test Name'); //Click on Task dropdown from the left-hand panel\ndashBoard.getCollapseNavigation().click();\ndashBoard.getTasksOption().click();\ncy.wait(3000); //Validate that the task just created is visible on the task index page\ncomElement.getSearchTextbox().type('Test Name');\ncomElement.getSearchButton().click();\ncy.wait(4000);\ntasks.getCreatedTaskNameVisible().should('include.text', 'Test Name');\ntasks.getCreatedTaskTypeVisible().should('include.text', 'Maintenance');\ntasks.getCreatedTaskAssignToVisible().should('include.text', 'Cypress Tester 1'); //Validate that a task just created is visible on Dashboard Notifications section\ndashBoard.getCollapseNavigation().click();\ndashBoard.getNotification().click();\nnotif.getTaskCreatedNotif().should('include.text', 'new task');",
+              "err": {},
+              "uuid": "1148d834-80ea-468d-b631-07889a9f7c01",
+              "parentUUID": "beb42400-a687-4c72-b080-267f4729c530",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "4948b2af-5898-4361-8c08-7eba2ca030c0",
+            "1148d834-80ea-468d-b631-07889a9f7c01"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 123347,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.0.1"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.0.1"
+    }
+  }
+}

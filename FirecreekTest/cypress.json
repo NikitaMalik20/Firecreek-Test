@@ -1,0 +1,20 @@
+{
+    "pageLoadTimeout": 20000,
+    "defaultCommandTimeout": 5000,
+    "chromeWebSecurity": false,
+    "failOnStatusCode": false,
+    "reporter": "cypress-multi-reporters",
+    "reporterOptions": {
+        "reporterEnabled": "mochawesome",
+        "mochawesomeReporterOptions": {
+            "reportDir": "cypress/reports/mocha",
+            "quite": true,
+            "overwrite": false,
+            "html": false,
+            "json": true
+        }
+    },
+    "env": {
+        "stagingUrl": "https://staging.arthuronline.co.uk/login?X-MODE=QA-eW91LXdpbi1ub3RoaW5nCg"
+    }
+}
